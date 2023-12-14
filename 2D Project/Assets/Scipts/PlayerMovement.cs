@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 8f;
     private float jumpingPower = 16f;
     private bool isFacingRight = true;
+    [SerializeField] private Animator anim;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -35,6 +36,20 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        if (horizontal > 0f)
+        {
+            anim.SetBool("isRunning", true);
+        }
+        else if (horizontal < 0f)
+        {
+            anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
+        } 
+            
     }
 
     private bool IsGrounded()

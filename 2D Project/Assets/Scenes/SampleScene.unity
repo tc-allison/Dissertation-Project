@@ -1432,6 +1432,7 @@ GameObject:
   - component: {fileID: 1416849124}
   - component: {fileID: 1416849126}
   - component: {fileID: 1416849127}
+  - component: {fileID: 1416849128}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1519,6 +1520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e6cb405843ad948a64183478c5018b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 1416849128}
   rb: {fileID: 1416849125}
   groundCheck: {fileID: 1166739411}
   groundLayer:
@@ -1549,7 +1551,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1416849126
 BoxCollider2D:
@@ -1605,7 +1607,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1416849121}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4d29705b969cc9d4a8c54f410bc5f69a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1631,6 +1633,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.53}
   serializedVersion: 2
   m_Radius: 0.50437045
+--- !u!95 &1416849128
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416849121}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c09e00858f07c947bd1db30009af962, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1521387504
 GameObject:
   m_ObjectHideFlags: 0
