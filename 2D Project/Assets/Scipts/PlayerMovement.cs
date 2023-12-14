@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
+#if game_feel
         if (horizontal > 0f)
         {
             anim.SetBool("isRunning", true);
@@ -48,8 +49,9 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             anim.SetBool("isRunning", false);
-        } 
-            
+        }
+#endif
+
     }
 
     private bool IsGrounded()
