@@ -1584,37 +1584,37 @@ CompositeCollider2D:
         Y: -50000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 5.8749857, y: 5}
-      - {x: 6, y: 5.187508}
-      - {x: 5.999971, y: 6}
-      - {x: 0, y: 5.999971}
-      - {x: 0.000029300001, y: 5}
-    - - {x: -2.0000293, y: 3}
-      - {x: -2.0000293, y: 4}
-      - {x: -5, y: 3.999971}
-      - {x: -4.999971, y: 3}
-    - - {x: 2.999971, y: 1}
-      - {x: 2.999971, y: 2}
-      - {x: -1, y: 1.9999708}
-      - {x: -0.99997073, y: 1}
-    - - {x: -7.0000296, y: 1}
-      - {x: -7.0000296, y: 2}
-      - {x: -10, y: 1.9999708}
-      - {x: -9.99997, y: 1}
-    - - {x: 9.99997, y: -1}
-      - {x: 9.99997, y: 0}
-      - {x: 6, y: -0.000029300001}
-      - {x: 6.000029, y: -1}
-    - - {x: -13.00003, y: -1}
-      - {x: -13.00003, y: 0}
-      - {x: -17, y: -0.000029300001}
-      - {x: -16.999971, y: -1}
-    - - {x: 4.999971, y: -5}
-      - {x: 4.999971, y: -2}
-      - {x: -11, y: -2.0000293}
-      - {x: -10.99997, y: -5}
+    - - {x: 6, y: 5.1875}
+      - {x: 6, y: 6}
+      - {x: 0, y: 6}
+      - {x: 0, y: 5}
+      - {x: 5.875, y: 5}
+    - - {x: -2, y: 4}
+      - {x: -5, y: 4}
+      - {x: -5, y: 3}
+      - {x: -2, y: 3}
+    - - {x: 3, y: 2}
+      - {x: -1, y: 2}
+      - {x: -1, y: 1}
+      - {x: 3, y: 1}
+    - - {x: -7, y: 2}
+      - {x: -10, y: 2}
+      - {x: -10, y: 1}
+      - {x: -7, y: 1}
+    - - {x: -13, y: 0}
+      - {x: -17, y: 0}
+      - {x: -17, y: -1}
+      - {x: -13, y: -1}
+    - - {x: 10, y: 0}
+      - {x: 6, y: 0}
+      - {x: 6, y: -1}
+      - {x: 10, y: -1}
+    - - {x: 5, y: -2}
+      - {x: -11, y: -2}
+      - {x: -11, y: -5}
+      - {x: 5, y: -5}
   m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
+  m_OffsetDistance: 0
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 1118899130}
 --- !u!19719996 &1118899135
@@ -1923,9 +1923,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 3ad14af97b7a9ab42831a74dd46e6d9c, type: 2}
-  jumpHeight: 12.8
-  downwardMovementMultiplier: 4
-  upwardMovementMultiplier: 4.5
+  jumpHeight: 10
+  downwardMovementMultiplier: 6
+  upwardMovementMultiplier: 3
+  coyoteTime: 0.2
+  jumpBufferTime: 0.2
 --- !u!95 &1416849131
 Animator:
   serializedVersion: 5

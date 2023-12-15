@@ -7,18 +7,20 @@ public class Jump : MonoBehaviour
     
     [SerializeField] private InputController input = null;
     [SerializeField, Range(0f, 20f)] private float jumpHeight = 13.3f;
-    [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 4f;
-    [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 4.5f;
+    [SerializeField, Range(0f, 10f)] private float downwardMovementMultiplier = 4f;
+    [SerializeField, Range(0f, 10f)] private float upwardMovementMultiplier = 4.5f;
+    [SerializeField, Range(0f, 0.3f)] private float coyoteTime = 0.2f;
+    [SerializeField, Range(0f, 0.3f)] private float jumpBufferTime = 0.2f;
 
     private Rigidbody2D body;
     private Ground ground;
     private Vector2 velocity;
 
     
-    private float defaultGravityScale;
+    private float defaultGravityScale, coyoteCounter, jumpSpeed, jumpBufferCounter;
 
-    private bool desiredJump;
-    private bool onGround;
+    private bool desiredJump, onGround, isJumping;
+    
 
 #if game_feel
     // Start is called before the first frame update
@@ -34,6 +36,9 @@ public class Jump : MonoBehaviour
     void Update()
     {
         desiredJump |= input.RetrieveJumpInput();
+
+       
+        
     }
 
     private void FixedUpdate()
@@ -41,19 +46,36 @@ public class Jump : MonoBehaviour
         onGround = ground.GetOnGround();
         velocity = body.velocity;
 
-        
+        if (onGround && body.velocity.y == 0)
+        {
+            coyoteCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteCounter -= Time.deltaTime;
+        }
 
         if(desiredJump) 
         {
             desiredJump = false;
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else if (!desiredJump && jumpBufferCounter > 0) 
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+        if (jumpBufferCounter > 0)
+        {
             JumpAction();
         }
 
-        if(body.velocity.y > 0)
+
+        if(input.RetrieveJumpHoldInput() && body.velocity.y > 0)
         {
             body.gravityScale = upwardMovementMultiplier;
         }
-        else if (body.velocity.y < 0)
+        else if (!input.RetrieveJumpHoldInput() || body.velocity.y < 0)
         {
             body.gravityScale = downwardMovementMultiplier;
         }
@@ -69,9 +91,11 @@ public class Jump : MonoBehaviour
 
     private void JumpAction()
     {
-        if (onGround)
+        if (coyoteCounter > 0f)
         {
-            float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
+            jumpBufferCounter = 0;
+            coyoteCounter = 0f;
+            jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
             if (velocity.y > 0f)
             {
                 jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);  
