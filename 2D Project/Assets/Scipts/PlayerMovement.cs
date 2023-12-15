@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     private float horizontal;
-    private float speed = 8f;
-    private float jumpingPower = 16f;
+    private float speed = 6f;
+    private float jumpingPower = 17f;
     private bool isFacingRight = true;
     [SerializeField] private Animator anim;
 
@@ -14,6 +15,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+
+#if no_feel
+    private void Awake()
+    {
+        anim.enabled = false;
+    }
     // Start is called before the first frame update
     void Update()
     {
@@ -37,21 +44,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
-#if game_feel
-        if (horizontal > 0f)
-        {
-            anim.SetBool("isRunning", true);
-        }
-        else if (horizontal < 0f)
-        {
-            anim.SetBool("isRunning", true);
-        }
-        else
-        {
-            anim.SetBool("isRunning", false);
-        }
-#endif
-
     }
 
     private bool IsGrounded()
@@ -71,4 +63,5 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+#endif
 }

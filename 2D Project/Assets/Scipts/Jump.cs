@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    
     [SerializeField] private InputController input = null;
-    [SerializeField, Range(0f, 20f)] private float jumpHeight = 3f;
-    [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
-    [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
+    [SerializeField, Range(0f, 20f)] private float jumpHeight = 13.3f;
+    [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 4f;
+    [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 4.5f;
 
     private Rigidbody2D body;
     private Ground ground;
@@ -19,6 +20,7 @@ public class Jump : MonoBehaviour
     private bool desiredJump;
     private bool onGround;
 
+#if game_feel
     // Start is called before the first frame update
     void Start()
     {
@@ -77,4 +79,5 @@ public class Jump : MonoBehaviour
             velocity.y += jumpSpeed;
         }
     }
+#endif
 }
