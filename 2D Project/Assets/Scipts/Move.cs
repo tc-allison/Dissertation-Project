@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    public ParticleSystem dust;
 
     [SerializeField] private InputController input = null;
     [SerializeField, Range(0f, 100f)] private float maxSpeed = 6.5f;
@@ -82,6 +83,7 @@ private void Flip()
     {
         if (isFacingRight && direction.x < 0f || !isFacingRight && direction.x > 0f)
         {
+            CreateDust();
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
@@ -89,6 +91,11 @@ private void Flip()
 
         }
 
+    }
+
+    void CreateDust()
+    {
+        dust.Play();
     }
 #endif
 }

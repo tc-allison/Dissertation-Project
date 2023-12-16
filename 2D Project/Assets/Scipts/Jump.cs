@@ -14,6 +14,7 @@ public class Jump : MonoBehaviour
     public Transform height;
 
     public Rigidbody2D body;
+    public ParticleSystem dust;
     private Ground ground;
     private Vector2 velocity;
 
@@ -104,6 +105,7 @@ public class Jump : MonoBehaviour
     {
         if (coyoteCounter > 0f)
         {
+            CreateDust();
             jumpBufferCounter = 0;
             coyoteCounter = 0f;
             height.GetComponent<Animator>().SetTrigger("stretch");
@@ -115,5 +117,11 @@ public class Jump : MonoBehaviour
             velocity.y += jumpSpeed;
         }
     }
+
+    void CreateDust()
+    {
+        dust.Play();
+    }
+
 #endif
 }
