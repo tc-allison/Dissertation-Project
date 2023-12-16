@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    
+
     [SerializeField] private InputController input = null;
     [SerializeField, Range(0f, 20f)] private float jumpHeight = 13.3f;
     [SerializeField, Range(0f, 10f)] private float downwardMovementMultiplier = 4f;
     [SerializeField, Range(0f, 10f)] private float upwardMovementMultiplier = 4.5f;
     [SerializeField, Range(0f, 0.3f)] private float coyoteTime = 0.2f;
     [SerializeField, Range(0f, 0.3f)] private float jumpBufferTime = 0.2f;
+    public Transform height;
 
-    private Rigidbody2D body;
+    public Rigidbody2D body;
     private Ground ground;
     private Vector2 velocity;
 
+    private bool prev_grounded = false;
     
     private float defaultGravityScale, coyoteCounter, jumpSpeed, jumpBufferCounter;
 
@@ -26,7 +28,6 @@ public class Jump : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
 
         defaultGravityScale = 1f;
@@ -46,9 +47,15 @@ public class Jump : MonoBehaviour
         onGround = ground.GetOnGround();
         velocity = body.velocity;
 
+        if (onGround && !prev_grounded)
+        {
+            height.GetComponent<Animator>().SetTrigger("squash");
+        }
+
         if (onGround && body.velocity.y == 0)
         {
             coyoteCounter = coyoteTime;
+           
         }
         else
         {
@@ -86,6 +93,10 @@ public class Jump : MonoBehaviour
         }
 
         body.velocity = velocity;
+
+        prev_grounded = onGround;
+
+        
     }
 
 
@@ -95,6 +106,7 @@ public class Jump : MonoBehaviour
         {
             jumpBufferCounter = 0;
             coyoteCounter = 0f;
+            height.GetComponent<Animator>().SetTrigger("stretch");
             jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
             if (velocity.y > 0f)
             {
