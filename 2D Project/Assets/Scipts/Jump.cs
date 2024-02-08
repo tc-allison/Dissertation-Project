@@ -11,6 +11,7 @@ public class Jump : MonoBehaviour
     [SerializeField, Range(0f, 10f)] private float upwardMovementMultiplier = 4.5f;
     [SerializeField, Range(0f, 0.3f)] private float coyoteTime = 0.2f;
     [SerializeField, Range(0f, 0.3f)] private float jumpBufferTime = 0.2f;
+    [SerializeField] private AudioManager audioManager;
     public Transform height;
 
     public Rigidbody2D body;
@@ -106,6 +107,7 @@ public class Jump : MonoBehaviour
         if (coyoteCounter > 0f)
         {
             CreateDust();
+            audioManager.PlaySFX(audioManager.jump);
             jumpBufferCounter = 0;
             coyoteCounter = 0f;
             height.GetComponent<Animator>().SetTrigger("stretch");
