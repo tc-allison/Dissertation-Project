@@ -52,6 +52,9 @@ public class Jump : MonoBehaviour
         if (onGround && !prev_grounded)
         {
             height.GetComponent<Animator>().SetTrigger("squash");
+            CreateDust();
+            audioManager.SFXSource.pitch = UnityEngine.Random.Range(1f, 1.6f);
+            audioManager.PlaySFX(audioManager.land);
         }
 
         if (onGround && body.velocity.y == 0)
