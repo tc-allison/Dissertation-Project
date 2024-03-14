@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontal;
     private float speed = 6f;
-    private float jumpingPower = 17f;
+    private float jumpingPower = 15.5f;
     private bool isFacingRight = true;
     [SerializeField] private Animator anim;
 
