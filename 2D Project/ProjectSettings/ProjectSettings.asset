@@ -592,7 +592,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: game_feel
+    Standalone: no_feel
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

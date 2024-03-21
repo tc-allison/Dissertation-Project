@@ -10,7 +10,8 @@ public class PlayerRespawn : MonoBehaviour
     [SerializeField] float duration = 1f;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform respawnPoint;
-    public bool playFade;
+    [SerializeField] Animator fadeAnimator;
+    
 
     // Start is called before the first frame update
 
@@ -26,11 +27,12 @@ public class PlayerRespawn : MonoBehaviour
     IEnumerator Respawn(float duration)
     {
         rb.simulated = false;
-        playFade = true;
+        fadeAnimator.SetBool("ShouldFade", true);
         yield return new WaitForSeconds(duration);
+        fadeAnimator.SetBool("ShouldFade", false);
         transform.position = respawnPoint.position;
         rb.simulated = true;
-        playFade = false;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
