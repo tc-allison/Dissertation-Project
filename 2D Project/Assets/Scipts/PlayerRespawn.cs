@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
-#if game_feel
+
     
     [SerializeField] float duration = 1f;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform respawnPoint;
     [SerializeField] Animator fadeAnimator;
-    
+
+
+#if game_feel
 
     // Start is called before the first frame update
 
